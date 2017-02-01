@@ -1,0 +1,18 @@
+entities_json_debug:
+    path:     /{class}/debug
+    defaults: { _controller: "LthrtEntityBundle:Entity:debug" }
+    requirements:
+
+entity_json_debug:
+    path:     /{class}/debug/{id}
+    defaults: { _controller: "LthrtEntityBundle:Entity:debug" }
+    requirements:
+        class: \w+
+        id: \d+(\_\d+)*
+
+entity_json_history:
+    path:     /{class}/history/{id}
+    defaults: { _controller: "LthrtEntityBundle:Entity:history" }
+    requirements:
+        class: \w+
+        id: \d+(\_\d+)*

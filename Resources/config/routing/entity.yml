@@ -1,0 +1,31 @@
+entities_json:
+    path:     /{class}/json
+    defaults: { _controller: "LthrtEntityBundle:Entity:json", _format: "json" }
+    requirements:
+        class: \w+
+
+entity_json:
+    path:     /{class}/json/{id}
+    defaults: { _controller: "LthrtEntityBundle:Entity:json", _format: "json" }
+    requirements:
+        class: \w+
+        id: \d+(\_\d+)*
+
+entity_log:
+    path:     /{class}/log/{id}
+    defaults: { _controller: "LthrtEntityBundle:Entity:log", _format: "json" }
+    requirements:
+        class: \w+
+        id: \d+
+
+entity_mod:
+    path:     /{class}/mod/{id}
+    defaults: { _controller: "LthrtEntityBundle:Entity:mod" }
+    requirements:
+        class: \w+
+
+entity_new:
+    path:     /{class}/json/new
+    defaults: { _controller: "LthrtEntityBundle:Entity:new" }
+    requirements:
+        class: \w+

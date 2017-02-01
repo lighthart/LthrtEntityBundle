@@ -1,0 +1,30 @@
+services:
+    lthrt.entity.fetcher:
+        class: Lthrt\EntityBundle\Model\EntityFetcher
+        arguments: [ "@doctrine.orm.entity_manager", "@logger", '%class_aliases%' ]
+
+    lthrt.entity.logger:
+        class: Lthrt\EntityBundle\Model\EntityLogger
+        arguments: [ "@doctrine.orm.entity_manager", "@logger", '%class_aliases%' ]
+
+    lthrt.entity.partial.logger:
+        class: Lthrt\EntityBundle\Model\PartialLogger
+        arguments: [ "@doctrine.orm.entity_manager"]
+
+    lthrt.entity.twig_extension:
+        class: Lthrt\EntityBundle\Twig\JSONExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    lthrt.listeners.entityPostPersist.logger:
+        class: Lthrt\EntityBundle\Listener\PostPersistEntityLogging
+        arguments: [ "@security.token_storage" ]
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    lthrt.listeners.entityPostUpdate.logger:
+        class: Lthrt\EntityBundle\Listener\PostUpdateEntityLogging
+        arguments: [ "@security.token_storage" ]
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }
